@@ -1,0 +1,30 @@
+name: Feishu Bot Code Update
+on:
+  repository_dispatch:
+    types: [update_docs]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run Update Script
+        run: |
+          # 将 Dify 传来的数据保存为临时文件
+          echo '${{ toJson(github.event.client_payload) }}' > payload.json
+          python update_script.py
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "FeishuBot"
+          git config --global user.email "bot@feishu.com"
+          git add .
+          git commit -m "Update from Feishu: ${{ github.event.client_payload.action }}" || exit 0
+          git push
