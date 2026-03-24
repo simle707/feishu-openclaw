@@ -1,6 +1,6 @@
 {
-  "action": "update_code",
-  "data": "{{xxxx}}",
+  "action": "",
+  "data": "",
   "image_url": "{{}}",
   "user": "{{q}}"
 }
