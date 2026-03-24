@@ -1,6 +1,6 @@
 {
   "action": "{{update_code}}",
-  "data": "{{这是来自飞书的第一次测试更新！}}",
+  "data": "{{test}}",
   "image_url": "{{}}",
   "user": "{{q}}"
 }
